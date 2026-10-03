@@ -8,7 +8,29 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+# ./modules/devtools.nix
+# ./modules/bash.nix
+# ./modules/timers.nix
     ];
+
+  environment.systemPackages = with pkgs; [
+    (import ./scripts/mvd.nix { inherit pkgs; })
+    # essential dev tools
+    zip
+    unzip
+    p7zip
+    helix
+    git
+    git-lfs
+    delta
+    tree
+    file
+    nil # nix lsp
+
+    # audio
+    x264
+    x265
+  ];
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
@@ -31,17 +53,17 @@
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
 
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "pl_PL.UTF-8";
-    LC_IDENTIFICATION = "pl_PL.UTF-8";
-    LC_MEASUREMENT = "pl_PL.UTF-8";
-    LC_MONETARY = "pl_PL.UTF-8";
-    LC_NAME = "pl_PL.UTF-8";
-    LC_NUMERIC = "pl_PL.UTF-8";
-    LC_PAPER = "pl_PL.UTF-8";
-    LC_TELEPHONE = "pl_PL.UTF-8";
-    LC_TIME = "pl_PL.UTF-8";
-  };
+  # i18n.extraLocaleSettings = {
+  #   LC_ADDRESS = "pl_PL.UTF-8";
+  #   LC_IDENTIFICATION = "pl_PL.UTF-8";
+  #   LC_MEASUREMENT = "pl_PL.UTF-8";
+  #   LC_MONETARY = "pl_PL.UTF-8";
+  #   LC_NAME = "pl_PL.UTF-8";
+  #   LC_NUMERIC = "pl_PL.UTF-8";
+  #   LC_PAPER = "pl_PL.UTF-8";
+  #   LC_TELEPHONE = "pl_PL.UTF-8";
+  #   LC_TIME = "pl_PL.UTF-8";
+  # };
 
   # Enable the GNOME Desktop Environment.
   services.displayManager.gdm.enable = true;
