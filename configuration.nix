@@ -8,9 +8,18 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-# ./modules/devtools.nix
-# ./modules/bash.nix
-# ./modules/timers.nix
+    
+    ./modules/bash.nix
+    ./modules/fonts.nix
+    ./modules/timers.nix
+
+    ./modules/gnome.nix
+    ./modules/apps.nix
+    ./modules/printing.nix
+    ./modules/devtools.nix
+    ./modules/ai.nix
+
+    ./modules/sound.nix
     ];
 
   environment.systemPackages = with pkgs; [
@@ -32,20 +41,45 @@
     x265
   ];
 
-  # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  boot = {
+    kernelModules = [
+      "video"
+      "acpi_video"
+      "bluetooth"
+    ];
 
-  boot.initrd.luks.devices."luks-b8875f0e-5bb3-49ee-8665-fd5913ab7d85".device = "/dev/disk/by-uuid/b8875f0e-5bb3-49ee-8665-fd5913ab7d85";
-  networking.hostName = "nixos"; # Define your hostname.
+    loader = {
+      efi.canTouchEfiVariables = true;
+      systemd-boot.enable = true;
+    };
+
+    initrd.luks.devices."luks-b8875f0e-5bb3-49ee-8665-fd5913ab7d85".device = "/dev/disk/by-uuid/b8875f0e-5bb3-49ee-8665-fd5913ab7d85";
+    
+    kernelParams = [
+      # TODO remove i915
+      # "i915.enable_dc=0"
+      # "i915.enable_fbc=0"
+      # "i915.enable_sagv=0"
+      # 1 - ok
+      # 2 - ?
+      # 3 - ?
+      # 4 - ?
+      # 5 - tearing
+      # "intel_idle.max_cstate=4"
+    ];
+  };
+
+  networking = {
+    hostName = "latitude7480";
+    networkmanager = {
+      # plugins = with pkgs; [ networkmanager-l2tp ];
+      enable = true;
+    };
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
-  # Enable networking
-  networking.networkmanager.enable = true;
+  };
 
   # Set your time zone.
   time.timeZone = "Europe/Warsaw";
@@ -66,8 +100,8 @@
   # };
 
   # Enable the GNOME Desktop Environment.
-  services.displayManager.gdm.enable = true;
-  services.desktopManager.gnome.enable = true;
+  # services.displayManager.gdm.enable = true;
+  # services.desktopManager.gnome.enable = true;
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -76,22 +110,11 @@
   };
 
   # Configure console keymap
-  console.keyMap = "pl2";
+  # console.keyMap = "pl2";
 
   # Enable CUPS to print documents.
-  services.printing.enable = true;
+  # services.printing.enable = true;
 
-  # Enable sound with pipewire.
-  services.pulseaudio.enable = false;
-  security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    # If you want to use JACK applications, uncomment this
-    # jack.enable = true;
-  };
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.libinput.enable = true;
@@ -100,17 +123,59 @@
   users.users."achstu" = {
     isNormalUser = true;
     description = "Michał Stachurski";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [
+      "wheel"        
+      "networkmanager"
+      "audio"
+      "dialout" # or uucp
+    ];
     packages = with pkgs; [
     #  thunderbird
     ];
   };
 
   # Install firefox.
-  programs.firefox.enable = true;
+  # programs.firefox.enable = true;
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
+
+
+  services.libinput = {
+    enable = true;
+    touchpad.naturalScrolling = true;
+  };
+
+  hardware = {
+    bluetooth.enable = true;
+    enableRedistributableFirmware = true;
+
+    # hardware acceleration of video decoding
+    graphics = {
+      enable = true;
+      extraPackages = [
+        pkgs.intel-media-driver
+        pkgs.intel-vaapi-driver
+      ];
+    };
+  };
+
+  nix = {
+    settings = {
+      # slows every nix command
+      # auto-optimise-store = true;
+      experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
+    };
+
+    gc = {
+      automatic = true;
+      dates = "weekly";
+      options = "--delete-older-than 7d";
+    };
+  };
 
   # List packages installed in system profile.
   # You can use https://search.nixos.org/ to find more packages (and options).
