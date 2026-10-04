@@ -1,0 +1,10 @@
+[user]
+	email = root.stachu@gmail.com
+	name = Michał Stachurski
+[diff]
+	algorithm = histogram
+[init]
+	defaultBranch = main
+[safe]
+	directory = /etc/nixos
+

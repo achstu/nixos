@@ -1,0 +1,20 @@
+# set recolor true
+
+map i recolor
+map s toggle_statusbar
+
+set font "FiraCode Nerd Font 12"
+
+# set default-fg "#bfbdb6"
+set default-fg "#BFBDB6"
+set default-bg "#020202"
+
+
+set statusbar-basename true
+set smooth-scrool true
+set scroll-step 80
+set zoom-step 20
+# set statusbar-home-tilde true
+
+map <Right> navigate next
+map <Left> navigate previous

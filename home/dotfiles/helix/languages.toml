@@ -1,0 +1,41 @@
+
+[language-server.rust-analyzer.config]
+cachePriming.enable = true
+diagnostics.experimental.enable = true
+
+[[language]]
+name = "python"
+# auto-format = true
+
+[[language]]
+name = "c"
+auto-format = true
+
+[language-server.pylsp.config.pylsp]
+plugins.ruff.enabled = true
+plugins.black.enabled = true
+
+
+[[language]]
+name = "ocaml"
+formatter = { command = "ocamlformat", args = ["-", "--impl", "--enable-outside-detected-project"] }
+# auto-format = true
+
+
+[[language]]
+name = "haskell"
+# formatter = { command = "ormolu" }
+# formatter = { command = "ormolu", args = ["--stdin-input-file", "%file"] }
+formatter = { command = "ormolu", args = ["-m", "inplace", "%file"] }
+auto-format = true
+
+[[language]]
+name = "typst"
+# formatter = { command = "typstfmt" }
+formatter = { command = "typstyle", args = ["--wrap-text"] }
+auto-format = false
+# language-servers = ["tinymist"]
+# language-server = { command = "typst-lsp" }
+
+
+

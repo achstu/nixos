@@ -1,0 +1,47 @@
+# theme = "ayu_evolve"
+theme = "amberwood"
+
+[editor]
+# line-number = "relative"
+auto-format = true
+auto-save = true
+
+# clipboard.copy = "wl-copy"
+# clipboard.paste = "wl-paste"
+
+# bufferline = "multiple"
+mouse = false
+# auto-info = false
+
+[editor.lsp]
+# display-messages = true
+# display-inlay-hints = true
+
+[editor.statusline]
+right = ["diagnostics", "selections", "primary-selection-length", "register", "position", "file-encoding"]
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
+
+
+# intenden to use only for typst, but there is no
+# official way to add language specific config
+# [editor.auto-save]
+# focus-lost = true
+# after-delay.enable = true
+# after-delay.timeout = 3000
+
+
+[keys.normal]
+esc = ["collapse_selection", "keep_primary_selection"]
+
+
+[keys.normal."+"]
+p = [
+  ":! typst watch %{buffer_name}",
+  ":! zathura %sh{ls *.pdf}"
+]
+m = ":! marp %{buffer_name}"
+
