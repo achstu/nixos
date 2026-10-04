@@ -16,16 +16,18 @@ in
     home.stateVersion = "26.05";
     # Here goes the rest of your home-manager config, e.g. home.packages = [ pkgs.foo ];
 
+    nixpkgs.config.allowUnfree = true;
+
     imports = [
       ./modules/bash.nix
       ./modules/fonts.nix
-      ./modules/timers.nix
-      ./modules/gnome.nix
+      # ./modules/timers.nix # TODO better backup approach
+      # ./modules/gnome.nix
       ./modules/apps.nix
-      ./modules/printing.nix
+      # ./modules/printing.nix
       ./modules/devtools.nix
       ./modules/ai.nix
-      ./modules/sound.nix # TODO sound -> audio
+      # ./modules/sound.nix # TODO sound -> audio
     ];
 
     home.packages = with pkgs; [

@@ -13,6 +13,10 @@
   imports = [
     ./hardware-configuration.nix
     ./home/achstu.nix
+
+    ./audio.nix
+    ./printing.nix
+    ./gnome.nix
   ];
 
   boot = {
@@ -111,7 +115,7 @@
     };
   };
 
-  nixpkgs.config.allowUnfree = true;
+  # nixpkgs.config.allowUnfree = true;
   nix = {
     settings = {
       # slows every nix command

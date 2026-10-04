@@ -13,7 +13,7 @@
     # jack.enable = true;
   };
 
-  home.packages = with pkgs; [
+  environment.systemPackages = with pkgs; [
     x264
     x265
   ];

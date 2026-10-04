@@ -1,28 +1,28 @@
 { pkgs, ... }:
 
 {
-  environment.systemPackages = with pkgs; [
+  home.packages = with pkgs; [
     # bash/general
     ripgrep
     tmux
     
     # cpp
-    clang
-    clang-tools
-    cmake
-    gcc
-    gnumake pkg-config
-    gdb
-    lldb # debuggers
-    nasm
-    bear
-    llvmPackages.clang-tools
+    # clang
+    # clang-tools
+    # cmake
+    # gcc
+    # gnumake pkg-config
+    # gdb
+    # lldb # debuggers
+    # nasm
+    # bear
+    # llvmPackages.clang-tools
     # libs
-    libcxx
-    gmp
-    boost
-    libclang
-    valgrind
+    # libcxx
+    # gmp
+    # boost
+    # libclang
+    # valgrind
 
     # rust
     cargo

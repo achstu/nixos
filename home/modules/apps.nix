@@ -11,7 +11,7 @@
 
   programs.firefox.enable = true;
 
-  environment.systemPackages = with pkgs; [
+  home.packages = with pkgs; [
     # typst (latex replacement)
     zathura
     typst
@@ -59,13 +59,4 @@
 
     # bitwarden-desktop
   ];
-
-  environment.sessionVariables = {
-    XDG_DATA_DIRS = lib.mkBefore [
-      # Make gtk+3 GSettings schema (org.gtk.Settings.FileChooser) visible.
-      # Without it, GLib aborts when Qt6 apps (e.g. QGIS) open the GTK3
-      # file-chooser save dialog → crash on "Save project".
-      "${pkgs.gtk3}/share/gsettings-schemas/${pkgs.gtk3.name}"
-    ];
-  };
 }

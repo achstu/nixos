@@ -1,4 +1,9 @@
-{ pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
   services.displayManager.gdm.enable = true;
@@ -14,10 +19,20 @@
     gnome-user-docs
   ];
 
+  # TODO move to home-manager
   environment.systemPackages = with pkgs; [
     nautilus
     bibata-cursors
   ];
+
+  environment.sessionVariables = {
+    XDG_DATA_DIRS = lib.mkBefore [
+      # Make gtk+3 GSettings schema (org.gtk.Settings.FileChooser) visible.
+      # Without it, GLib aborts when Qt6 apps (e.g. QGIS) open the GTK3
+      # file-chooser save dialog → crash on "Save project".
+      "${pkgs.gtk3}/share/gsettings-schemas/${pkgs.gtk3.name}"
+    ];
+  };
 
   # gsettings get org.gnome.shell enabled-extensions
   programs.kdeconnect = {
@@ -26,10 +41,10 @@
   };
 
   # dconf.settings = {
-    # "org/gnome/desktop/interface" = {
-      # cursor-theme = "Bibata-Modern-Classic";
-      # cursor-size = 24;
-    # };
+  # "org/gnome/desktop/interface" = {
+  # cursor-theme = "Bibata-Modern-Classic";
+  # cursor-size = 24;
+  # };
   # };
 
   # xdg.portal = {

@@ -1,24 +1,28 @@
 { pkgs, ... }:
 
 {
-  environment = {
-    systemPackages = [ pkgs.fzf ];
-    variables = {
+  home = {
+    packages = with pkgs; [
+      bash
+      fzf
+    ];
+
+    sessionVariables = {
       TIMEFORMAT = "%Rs";
     };
   };
 
   programs = {
     bash = {
-      completion.enable = true;
+      enableCompletion = true; # TODO default -> remove
       shellAliases = {
         grep = "grep --color=auto";
         llm = "aichat -e";
       };
-      promptInit = ''
+      profileExtra = ''
         PS1="\[\e[1m\]\[\e[32m\][\$?] \s \W ->\[\e[0m\] "
       '';
-      interactiveShellInit = ''
+      initExtra = ''
 
         shopt -s histappend
         shopt -s dotglob
