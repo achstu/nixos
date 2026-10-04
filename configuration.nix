@@ -19,6 +19,8 @@
     ./modules/ai.nix
 
     ./modules/sound.nix
+
+    ./home/home.nix
   ];
 
   boot = {
