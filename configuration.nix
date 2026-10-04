@@ -12,20 +12,7 @@
 {
   imports = [
     ./hardware-configuration.nix
-
-    ./modules/bash.nix
-    ./modules/fonts.nix
-    ./modules/timers.nix
-
-    ./modules/gnome.nix
-    ./modules/apps.nix
-    ./modules/printing.nix
-    ./modules/devtools.nix
-    ./modules/ai.nix
-
-    ./modules/sound.nix
-
-    ./home/home.nix
+    ./home/achstu.nix
   ];
 
   boot = {
@@ -143,7 +130,6 @@
   };
 
   environment.systemPackages = with pkgs; [
-    (import ./scripts/mvd.nix { inherit pkgs; })
     # essential dev tools
     zip
     unzip
@@ -156,10 +142,6 @@
     file
     nil # nix lsp
     nh
-
-    # audio
-    x264
-    x265
   ];
 
   # system.copySystemConfiguration = true;
