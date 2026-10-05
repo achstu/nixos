@@ -12,11 +12,12 @@
 {
   imports = [
     ./hardware-configuration.nix
+
     ./home/achstu.nix
 
-    ./audio.nix
-    ./printing.nix
-    ./gnome.nix
+    ./system/audio.nix
+    ./system/printing.nix
+    ./system/gnome.nix
   ];
 
   boot = {
