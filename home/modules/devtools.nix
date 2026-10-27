@@ -6,6 +6,8 @@
     ripgrep
     tmux
     
+    # better than git
+    jujutsu
     # cpp
     # clang
     # clang-tools
