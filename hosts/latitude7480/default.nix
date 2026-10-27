@@ -13,11 +13,11 @@
   imports = [
     ./hardware-configuration.nix
 
-    ./home/achstu.nix
+    # ./home/achstu.nix
 
-    ./system/audio.nix
-    ./system/printing.nix
-    ./system/gnome.nix
+    # ./system/audio.nix
+    # ./system/printing.nix
+    # ./system/gnome.nix
   ];
 
   boot = {
@@ -105,6 +105,8 @@
       #  thunderbird
     ];
   };
+
+  nixpkgs.config.allowUnfree = true;
 
   services.libinput = {
     enable = true;
