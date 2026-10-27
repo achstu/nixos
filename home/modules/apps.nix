@@ -14,6 +14,7 @@
   home.packages = with pkgs; [
     # typst (latex replacement)
     zathura
+    onlyoffice-desktopeditors
     typst
     typstyle
     # typstfmt
@@ -57,6 +58,7 @@
     # mission-center
     #
 
-    # bitwarden-desktop
+    bitwarden-desktop
+    localsend
   ];
 }

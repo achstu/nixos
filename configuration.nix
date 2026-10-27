@@ -40,14 +40,22 @@
       # "i915.enable_dc=0"
       # "i915.enable_fbc=0"
       # "i915.enable_sagv=0"
-      # "intel_idle.max_cstate=4" # removes tearing
+      "intel_idle.max_cstate=4" # removes tearing on SAMSUNG monitor
     ];
   };
+
+  # services.immich = {
+    # enable = true;
+    # port = 2283;
+  # };
 
   networking = {
     hostName = "latitude7480";
     networkmanager = {
-      # plugins = with pkgs; [ networkmanager-l2tp ];
+      plugins = with pkgs; [
+        # networkmanager-l2tp
+        networkmanager-openvpn
+      ];
       enable = true;
     };
     # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -57,7 +65,8 @@
   };
 
   # Set your time zone.
-  time.timeZone = "Europe/Warsaw";
+  # time.timeZone = "Europe/Warsaw";
+  time.timeZone = "Pacific/Auckland";
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";

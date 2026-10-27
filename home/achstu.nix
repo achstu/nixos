@@ -24,10 +24,9 @@ in
       # ./modules/timers.nix # TODO better backup approach
       ./modules/gnome.nix
       ./modules/apps.nix
-      # ./modules/printing.nix
       ./modules/devtools.nix
       ./modules/ai.nix
-      # ./modules/sound.nix # TODO sound -> audio
+
       ./config.nix
     ];
 
