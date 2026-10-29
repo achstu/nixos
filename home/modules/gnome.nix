@@ -1,7 +1,7 @@
 { pkgs, ... }:
 
 let
-  wallpaper = ./deepsky_2560x1440.jpg;
+  wallpaper = ../../assets/deepsky_2560x1440.jpg;
 in
 {
   dconf.settings = {

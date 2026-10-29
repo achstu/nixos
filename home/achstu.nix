@@ -9,8 +9,6 @@
   home.stateVersion = "26.05";
   # Here goes the rest of your home-manager config, e.g. home.packages = [ pkgs.foo ];
 
-  nixpkgs.config.allowUnfree = true;
-
   imports = [
     ./modules/bash.nix
     ./modules/fonts.nix

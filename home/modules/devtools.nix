@@ -8,6 +8,8 @@
     
     # better than git
     jujutsu
+    docker
+    opencode
     # cpp
     # clang
     # clang-tools

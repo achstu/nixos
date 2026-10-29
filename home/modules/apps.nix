@@ -6,9 +6,6 @@
 }:
 
 {
-  # for obsidian
-  nixpkgs.config.allowUnfree = true;
-
   programs.firefox.enable = true;
 
   home.packages = with pkgs; [
