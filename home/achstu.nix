@@ -16,7 +16,6 @@
     ./modules/gnome.nix
     ./modules/apps.nix
     ./modules/devtools.nix
-    ./modules/ai.nix
 
     ./config.nix
   ];

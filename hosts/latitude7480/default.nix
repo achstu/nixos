@@ -92,6 +92,8 @@
   # Configure console keymap
   # console.keyMap = "pl2";
 
+  virtualisation.docker.enable = true;
+
   users.users."achstu" = {
     isNormalUser = true;
     description = "Michał Stachurski";
@@ -100,6 +102,7 @@
       "networkmanager"
       "audio"
       "dialout" # or uucp
+      "docker"
     ];
     packages = with pkgs; [
       #  thunderbird

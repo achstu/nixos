@@ -1,6 +1,9 @@
 { pkgs, ... }:
 
 {
+
+  # TODO: in the future, I will be using flakes, no compiles, libs and devtool system/user wide
+
   home.packages = with pkgs; [
     # bash/general
     ripgrep

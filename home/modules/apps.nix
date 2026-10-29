@@ -57,5 +57,13 @@
 
     bitwarden-desktop
     localsend
+
+    # AI
+    # code-cursor-fhs
+    pi-coding-agent
+    aichat
+    opencode
+    # claude-code
+
   ];
 }
