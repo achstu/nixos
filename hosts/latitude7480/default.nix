@@ -15,9 +15,9 @@
 
     # ./home/achstu.nix
 
-    # ./system/audio.nix
-    # ./system/printing.nix
-    # ./system/gnome.nix
+     ./system/audio.nix
+     ./system/printing.nix
+     ./system/gnome.nix
   ];
 
   boot = {
