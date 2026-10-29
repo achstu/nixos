@@ -1,64 +1,63 @@
 {
-  description = "just random string";
+  description = "Just random string";
 
   inputs = {
+    # nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-26.05";
+      url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Staging ground for future inputs:
-    # nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
-    # sops-nix.url        = "github:Mic92/sops-nix";
-    # nur.url             = "github:nix-community/NUR";
+    agenix = {
+      url = "github:ryantm/agenix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # Add other inputs as needed
   };
 
   outputs =
-    { nixpkgs, home-manager, ... }:
-    let
-      system = "x86_64-linux";
-      username = "achstu";
+    {
+      nixpkgs,
+      home-manager,
+      agenix,
+      ...
+    }:
+    {
+      nixosConfigurations = {
 
-      # Helper: builds a NixOS configuration for a given host dir
-      mkHost =
-        hostDir:
-        nixpkgs.lib.nixosSystem {
-          inherit system;
+        # server (in the future, after migration to x1)
+        # Dell Latitude 7480
+        latitude7480 = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
           modules = [
-            # ── host-specific ────────────────────────
-            (import "${hostDir}/hardware-configuration.nix")
-            (import "${hostDir}/default.nix")
-
-            # ── shared system modules ────────────────
-            ./system/audio.nix
-            ./system/printing.nix
-            ./system/gnome.nix
-
-            # ── home-manager as a NixOS module ───────
+            ./hosts/latitude7480
             home-manager.nixosModules.home-manager
+            agenix.nixosModules.default
             {
-              home-manager = {
-                useGlobalPkgs = true; # reuse system nixpkgs
-                useUserPackages = true; # allow home-manager to use system packages
-                extraSpecialArgs = { inherit username; };
-
-                users.${username} = import ./home/achstu.nix;
-              };
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.users.achstu = import ./home/achstu.nix;
             }
           ];
         };
-    in
-    {
-      # ── machines ────────────────────────────────
-      nixosConfigurations = {
-        latitude7480 = mkHost ./hosts/latitude7480;
-        # framework13 = mkHost ./hosts/framework13;   # ← future
-      };
 
-      # ── convenience ──────────────────────────────
-      # `nix run .#mvd -- <dest>`  — move newest download
-      # packages.x86_64-linux.mvd = (import ./scripts/mvd.nix) { };
+        # ThinkPad X1 Carbon Gen 8, i7
+        laptop = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          modules = [
+            ./hosts/x1carbon
+            home-manager.nixosModules.home-manager
+            agenix.nixosModules.default
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.users.achstu = import ./home/achstu.nix;
+            }
+          ];
+        };
+      };
     };
 }
