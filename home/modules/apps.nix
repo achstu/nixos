@@ -65,5 +65,8 @@
     opencode
     # claude-code
 
+    # GNOME
+    nautilus
+    bibata-cursors
   ];
 }

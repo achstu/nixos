@@ -15,6 +15,15 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    impermanence = {
+      url = "github:nix-community/impermanence";
+    };
+
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # Add other inputs as needed
   };
 
@@ -23,6 +32,8 @@
       nixpkgs,
       home-manager,
       agenix,
+      impermanence,
+      disko,
       ...
     }:
     {
@@ -45,10 +56,12 @@
         };
 
         # ThinkPad X1 Carbon Gen 8, i7
-        laptop = nixpkgs.lib.nixosSystem {
+        x1carbon = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           modules = [
             ./hosts/x1carbon
+            disko.nixosModules.disko
+            impermanence.nixosModules.impermanence
             home-manager.nixosModules.home-manager
             agenix.nixosModules.default
             {

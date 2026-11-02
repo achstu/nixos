@@ -19,11 +19,6 @@
     gnome-user-docs
   ];
 
-  # TODO move to home-manager
-  environment.systemPackages = with pkgs; [
-    nautilus
-    bibata-cursors
-  ];
 
   environment.sessionVariables = {
     XDG_DATA_DIRS = lib.mkBefore [
