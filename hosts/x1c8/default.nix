@@ -61,22 +61,14 @@
 
   virtualisation.docker.enable = true;
 
-  # Agenix: passwords are stored encrypted in the repo (secrets/*.age) and
-  # decrypted at boot to /run/agenix. The age private key lives on /persist.
-  age.identityPaths = [ "/persist/etc/agenix-key" ];
-  age.secrets = {
-    achstu-password.file = ../../secrets/achstu-password.age;
-    root-password.file = ../../secrets/root-password.age;
-  };
-
   users.users."root" = {
-    hashedPasswordFile = config.age.secrets.root-password.path;
+    hashedPassword = "$6$REPLACE_WITH_ROOT_HASH";
   };
 
   users.users."achstu" = {
     isNormalUser = true;
     description = "Michał Stachurski";
-    hashedPasswordFile = config.age.secrets.achstu-password.path;
+    hashedPassword = "$6$REPLACE_WITH_ACHSTU_HASH";
     extraGroups = [
       "wheel"
       "networkmanager"

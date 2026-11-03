@@ -63,7 +63,6 @@
             disko.nixosModules.disko
             impermanence.nixosModules.impermanence
             home-manager.nixosModules.home-manager
-            agenix.nixosModules.default
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
