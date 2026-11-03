@@ -30,10 +30,6 @@
       systemd-boot.enable = true;
     };
 
-    kernelParams = [
-      "intel_idle.max_cstate=4"
-    ];
-
     # Needed so the tmpfs root + /nix + /persist are mounted early.
     initrd.systemd.enable = true;
     supportedFilesystems = [ "btrfs" ];
@@ -45,7 +41,7 @@
   };
 
   networking = {
-    hostName = "x1carbon";
+    hostName = "x1c8"; # TODO inherit from hostname in flake.nix?
     networkmanager = {
       enable = true;
       plugins = with pkgs; [
@@ -65,9 +61,22 @@
 
   virtualisation.docker.enable = true;
 
+  # Agenix: passwords are stored encrypted in the repo (secrets/*.age) and
+  # decrypted at boot to /run/agenix. The age private key lives on /persist.
+  age.identityPaths = [ "/persist/etc/agenix-key" ];
+  age.secrets = {
+    achstu-password.file = ../../secrets/achstu-password.age;
+    root-password.file = ../../secrets/root-password.age;
+  };
+
+  users.users."root" = {
+    hashedPasswordFile = config.age.secrets.root-password.path;
+  };
+
   users.users."achstu" = {
     isNormalUser = true;
     description = "Michał Stachurski";
+    hashedPasswordFile = config.age.secrets.achstu-password.path;
     extraGroups = [
       "wheel"
       "networkmanager"
@@ -114,17 +123,18 @@
   };
 
   environment.systemPackages = with pkgs; [
-    zip
-    unzip
-    p7zip
+    zip unzip p7zip
+    
     helix
-    git
-    git-lfs
+
+    git git-lfs jujutsu
+    
     delta
     tree
     file
     nil
     nh
+    agenix
   ];
 
   system.stateVersion = "26.05";

@@ -56,10 +56,10 @@
         };
 
         # ThinkPad X1 Carbon Gen 8, i7
-        x1carbon = nixpkgs.lib.nixosSystem {
+        x1c8 = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           modules = [
-            ./hosts/x1carbon
+            ./hosts/x1c8
             disko.nixosModules.disko
             impermanence.nixosModules.impermanence
             home-manager.nixosModules.home-manager
