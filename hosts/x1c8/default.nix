@@ -62,13 +62,13 @@
   virtualisation.docker.enable = true;
 
   users.users."root" = {
-    hashedPassword = "$6$REPLACE_WITH_ROOT_HASH";
+    hashedPassword = "$6$tAP/qDc6YbqvvP7B$FfP.GKFMLvrCReNXHDafNCjw/JeF9BmtT5HYUMJgt5k/usAqEwgc9oW1llGrWHoHlEBu6LXzXUALpMa1haVA11";
   };
 
   users.users."achstu" = {
     isNormalUser = true;
     description = "Michał Stachurski";
-    hashedPassword = "$6$REPLACE_WITH_ACHSTU_HASH";
+    hashedPassword = "$6$lAXRgVkOF0wjiFrw$0FDdpUKng9R/6.a3jF7UB7fVRxP95biB0dEfn1CZNBTgBPS.UPdnkJqKxgBYqG/cVvq8WOdDAfk3IvBL7jPPT/";
     extraGroups = [
       "wheel"
       "networkmanager"
