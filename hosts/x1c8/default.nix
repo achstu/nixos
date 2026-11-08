@@ -126,8 +126,14 @@
     file
     nil
     nh
-    agenix
+    agenix-cli
   ];
+
+  services = {
+    thermald.enable = true;
+    fwupd.enable = true;
+    fstrim.enable = true;
+  };
 
   system.stateVersion = "26.05";
 }

@@ -19,10 +19,8 @@
         grep = "grep --color=auto";
         llm = "aichat -e";
       };
-      profileExtra = ''
-        PS1="\[\e[1m\]\[\e[32m\][\$?] \s \W ->\[\e[0m\] "
-      '';
       initExtra = ''
+        PS1="\[\e[1m\]\[\e[32m\][\$?] \s \W ->\[\e[0m\] "
 
         shopt -s histappend
         shopt -s dotglob
