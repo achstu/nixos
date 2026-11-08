@@ -11,17 +11,22 @@
 
   imports = [
     ./modules/bash.nix
-    ./modules/fonts.nix
+    # ./modules/fonts.nix
     # ./modules/timers.nix # TODO better backup approach
     ./modules/gnome.nix
-    ./modules/apps.nix
-    ./modules/devtools.nix
+    # ./modules/apps.nix
+    # ./modules/devtools.nix
 
     ./config.nix
   ];
 
+  programs.firefox.enable = true;
+
   home.packages = with pkgs; [
     (import ./scripts/mvd.nix { inherit pkgs; })
+    vscode-fhs
+    kitty
+    ripgrep    
   ];
 
   xdg.userDirs = {

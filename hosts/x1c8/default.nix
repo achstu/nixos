@@ -45,7 +45,7 @@
     networkmanager = {
       enable = true;
       plugins = with pkgs; [
-        networkmanager-openvpn
+        # networkmanager-openvpn
       ];
     };
   };
@@ -119,14 +119,16 @@
     
     helix
 
-    git git-lfs jujutsu
+    git
+    # git-lfs
+    # jujutsu
     
-    delta
+    # delta
     tree
     file
     nil
-    nh
-    agenix-cli
+    # nh
+    # agenix-cli
   ];
 
   services = {
