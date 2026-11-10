@@ -14,7 +14,7 @@
 
     ./system/audio.nix
     ./system/printing.nix
-    ./system/gnome.nix
+    # ./system/gnome.nix # replaced by greetd + sway
   ];
 
   boot = {
@@ -28,6 +28,8 @@
       efi.canTouchEfiVariables = true;
       systemd-boot.enable = true;
     };
+
+    kernelParams = [ "mem_sleep_default=deep" ];
 
     supportedFilesystems = [ "ext4" ];
   };
@@ -88,6 +90,8 @@
 
   security.polkit.enable = true;
 
+  services.logind.settings.Login.HandleLidSwitch = "suspend";
+
   services.greetd = {
     enable = true;
     settings = {
@@ -145,6 +149,13 @@
   ];
 
   services = {
+    tlp = {
+      enable = true;
+      settings = {
+        BAT0_START_CHARGETHRESH = 60;
+        BAT0_STOP_CHARGETHRESH = 80;
+      };
+    };
     thermald.enable = true;
     fwupd.enable = true;
     fstrim.enable = true;
