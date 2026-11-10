@@ -1,5 +1,5 @@
 # Hardware kernel modules for the ThinkPad X1 Carbon Gen 8.
-# Filesystems and LUKS are declared in ./disko.nix (do not duplicate here).
+# Filesystem and LUKS are declared in ./disko.nix (do not duplicate here).
 { lib, ... }:
 
 {

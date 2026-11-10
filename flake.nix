@@ -15,10 +15,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    impermanence = {
-      url = "github:nix-community/impermanence";
-    };
-
     disko = {
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -32,7 +28,6 @@
       nixpkgs,
       home-manager,
       agenix,
-      impermanence,
       disko,
       ...
     }:
@@ -61,7 +56,6 @@
           modules = [
             ./hosts/x1c8
             disko.nixosModules.disko
-            impermanence.nixosModules.impermanence
             home-manager.nixosModules.home-manager
             {
               home-manager.useGlobalPkgs = true;

@@ -1,5 +1,5 @@
 # ThinkPad X1 Carbon Gen 8 - main system configuration.
-# Disk layout: see ./disko.nix. Persistence: see ./impermanence.nix.
+# Disk layout: see ./disko.nix.
 {
   config,
   lib,
@@ -11,7 +11,6 @@
   imports = [
     ./hardware-configuration.nix
     ./disko.nix
-    ./impermanence.nix
 
     ./system/audio.nix
     ./system/printing.nix
@@ -30,9 +29,7 @@
       systemd-boot.enable = true;
     };
 
-    # Needed so the tmpfs root + /nix + /persist are mounted early.
-    initrd.systemd.enable = true;
-    supportedFilesystems = [ "btrfs" ];
+    supportedFilesystems = [ "ext4" ];
   };
 
   zramSwap = {

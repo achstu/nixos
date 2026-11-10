@@ -2,15 +2,7 @@
   ...
 }:
 {
-  fileSystems."/nix".neededForBoot = true;
-  fileSystems."/persist".neededForBoot = true;
-
   disko.devices = {
-    nodev."/" = {
-      fsType = "tmpfs";
-      mountOptions = [ "size=8G" "mode=755" ];
-    };
-
     disk.main = {
       type = "disk";
       device = "/dev/nvme0n1";
@@ -35,24 +27,9 @@
               name = "crypted";
               settings.allowDiscards = true;
               content = {
-                type = "btrfs";
-                extraArgs = [ "-f" ];
-                subvolumes = {
-                  "@nix" = {
-                    mountpoint = "/nix";
-                    mountOptions = [
-                      "compress=zstd"
-                      "noatime"
-                    ];
-                  };
-                  "@persist" = {
-                    mountpoint = "/persist";
-                    mountOptions = [
-                      "compress=zstd"
-                      "noatime"
-                    ];
-                  };
-                };
+                type = "filesystem";
+                format = "ext4";
+                mountpoint = "/";
               };
             };
           };
