@@ -1,6 +1,14 @@
-{ pkgs, ... }:
+{
+  pkgs,
+  ...
+}:
 
 {
+  home.packages = [
+    pkgs.brightnessctl
+    pkgs.pulseaudio # pactl
+  ];
+
   wayland.windowManager.sway = {
     enable = true;
     wrapperFeatures.gtk = true; # Fixes common issues with GTK 3 apps
@@ -36,6 +44,15 @@
       keybindings = {
         # window management
         "Mod4+w" = "kill";
+
+        # brightness
+        "XF86MonBrightnessDown" = "exec ${pkgs.brightnessctl}/bin/brightnessctl set 5%-";
+        "XF86MonBrightnessUp" = "exec ${pkgs.brightnessctl}/bin/brightnessctl set 5%+";
+
+        # volume
+        "XF86AudioLowerVolume" = "exec ${pkgs.pulseaudio}/bin/pactl set-sink-volume @DEFAULT_SINK@ -5%";
+        "XF86AudioRaiseVolume" = "exec ${pkgs.pulseaudio}/bin/pactl set-sink-volume @DEFAULT_SINK@ +5%";
+        "XF86AudioMute" = "exec ${pkgs.pulseaudio}/bin/pactl set-sink-mute @DEFAULT_SINK@ toggle";
 
         # launch apps
         "Mod4+e" = "exec ${pkgs.firefox}/bin/firefox";
