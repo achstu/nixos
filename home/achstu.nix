@@ -11,9 +11,9 @@
 
   imports = [
     ./modules/bash.nix
-    # ./modules/fonts.nix
+    ./modules/fonts.nix
     # ./modules/timers.nix # TODO better backup approach
-    ./modules/gnome.nix
+    ./modules/sway.nix
     # ./modules/apps.nix
     # ./modules/devtools.nix
 
