@@ -146,6 +146,7 @@
     nil
     # nh
     # agenix-cli
+    age
   ];
 
   services = {
