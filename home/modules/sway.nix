@@ -29,15 +29,15 @@
       ];
 
 
-      input."type:keyboard" = {
-        xkb_layout = "pl";
-        xkb_variant = "";
-      };
+      # input."type:keyboard" = {
+        # xkb_layout = "pl";
+        # xkb_variant = "";
+      # };
 
       input."type:touchpad" = {
         tap = "enabled";
         tap_button_map = "lrm";
-        natural_scrolling = "disabled";
+        # natural_scrolling = "disabled";
       };
 
 
