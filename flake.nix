@@ -57,6 +57,7 @@
             ./hosts/x1c8
             disko.nixosModules.disko
             home-manager.nixosModules.home-manager
+            agenix.nixosModules.default
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
