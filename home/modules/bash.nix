@@ -14,6 +14,7 @@
 
   programs = {
     bash = {
+      enable = true;
       enableCompletion = true; # TODO default -> remove
       shellAliases = {
         grep = "grep --color=auto";

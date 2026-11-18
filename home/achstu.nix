@@ -11,6 +11,7 @@
 
   imports = [
     ./modules/bash.nix
+    # ./modules/starship.nix
     ./modules/fonts.nix
     # ./modules/timers.nix # TODO better backup approach
     ./modules/sway.nix
