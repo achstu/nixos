@@ -9,6 +9,51 @@
     pkgs.pulseaudio # pactl
   ];
 
+  programs.i3status = {
+    enable = true;
+    enableDefault = false;
+
+    general = {
+      colors = true;
+      interval = 30;
+    };
+
+    modules = {
+      "battery all" = {
+        position = 1;
+        settings.format = "%status %percentage %remaining";
+      };
+
+      "wireless _first_" = {
+        position = 2;
+        settings = {
+          format_up = "W: (%quality) %essid";
+          format_down = "W: down";
+        };
+      };
+
+      "disk /" = {
+        position = 3;
+        settings.format = "DSK %avail";
+      };
+
+      memory = {
+        position = 4;
+        settings.format = "MEM %used / %total";
+      };
+
+      load = {
+        position = 5;
+        settings.format = "load %1min";
+      };
+
+      "tztime local" = {
+        position = 6;
+        settings.format = "%Y-%m-%d %H:%M";
+      };
+    };
+  };
+
   wayland.windowManager.sway = {
     enable = true;
     wrapperFeatures.gtk = true; # Fixes common issues with GTK 3 apps
@@ -37,9 +82,29 @@
       input."type:touchpad" = {
         tap = "enabled";
         tap_button_map = "lrm";
-        # natural_scrolling = "disabled";
+        natural_scroll = "enabled";
       };
 
+      input."2:10:TPPS/2_Elan_TrackPoint" = {
+        natural_scroll = "enabled";
+      };
+
+      bars = [
+        {
+          id = "bar-0";
+          mode = "dock";
+          hiddenState = "hide";
+          position = "bottom";
+          statusCommand = "${pkgs.i3status}/bin/i3status";
+          workspaceButtons = true;
+          workspaceNumbers = true;
+          trayOutput = "primary";
+          fonts = {
+            names = [ "FiraCode Nerd Font" ];
+            size = 14.0;
+          };
+        }
+      ];
 
       keybindings = {
         # window management

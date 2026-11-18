@@ -14,8 +14,8 @@
     ./modules/fonts.nix
     # ./modules/timers.nix # TODO better backup approach
     ./modules/sway.nix
-    # ./modules/apps.nix
-    # ./modules/devtools.nix
+    ./modules/apps.nix
+    ./modules/devtools.nix
 
     ./config.nix
   ];
@@ -26,37 +26,8 @@
     (import ./scripts/mvd.nix { inherit pkgs; })
     vscode-fhs
     kitty
-    ripgrep    
+    ripgrep
+    opencode    
   ];
 
-  xdg.userDirs = {
-    enable = true;
-    createDirectories = true;
-
-    # Przekierowujemy potrzebne katalogi na małe litery
-    download = "$HOME/downloads";
-
-    # Wyłączamy/przekierowujemy pozostałe standardowe foldery do $HOME
-    desktop = "$HOME";
-    documents = "$HOME";
-    music = "$HOME";
-    pictures = "$HOME";
-    projects = "$HOME";
-    publicShare = "$HOME";
-    templates = "$HOME";
-    videos = "$HOME";
-
-    # Dodatkowe własne katalogi
-    extraConfig = {
-      XDG_SCREENSHOTS_DIR = "$HOME/screenshots";
-    };
-  };
-
-  dconf.settings = {
-    "org/gnome/gnome-screenshot" = {
-      auto-save-directory = "file:///home/achstu/screenshots";
-    };
-    # Dla wbudowanego narzędzia do screenshotów w nowszych wersjach GNOME:
-    "org/gnome/shell/keybindings" = { };
-  };
 }

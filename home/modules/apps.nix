@@ -48,8 +48,8 @@
     transmission_4 # for torrent
     # localsend
 
-    qgis # or "qgis-ltr" for long-term-release
-    stellarium
+    # qgis # or "qgis-ltr" for long-term-release
+    # stellarium
     # celestia
     #
     # mission-center
@@ -66,7 +66,7 @@
     # claude-code
 
     # GNOME
-    nautilus
-    bibata-cursors
+    # nautilus
+    # bibata-cursors
   ];
 }

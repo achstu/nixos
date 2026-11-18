@@ -83,10 +83,12 @@
   services.libinput = {
     enable = true;
     touchpad = {
-      naturalScrolling = false;
+      naturalScrolling = true;
       tapping = true;
     };
   };
+
+  programs.dconf.enable = true;
 
   security.polkit.enable = true;
 
