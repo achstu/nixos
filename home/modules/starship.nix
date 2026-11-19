@@ -13,12 +13,12 @@
 
       directory = {
         truncation_length = 3;
-        truncation_symbol = "…/";
+        truncation_symbol = "";
         style = "bold cyan";
       };
 
       git_branch = {
-        symbol = " ";
+        symbol = ":";
         style = "bold purple";
       };
 
