@@ -59,6 +59,7 @@
   };
 
   virtualisation.docker.enable = true;
+  virtualisation.podman.enable = true;
 
   users.users."root" = {
     hashedPassword = "$6$tAP/qDc6YbqvvP7B$FfP.GKFMLvrCReNXHDafNCjw/JeF9BmtT5HYUMJgt5k/usAqEwgc9oW1llGrWHoHlEBu6LXzXUALpMa1haVA11";
