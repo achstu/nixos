@@ -74,10 +74,9 @@
       ];
 
 
-      # input."type:keyboard" = {
-        # xkb_layout = "pl";
-        # xkb_variant = "";
-      # };
+      input."type:keyboard" = {
+        xkb_layout = "pl";
+      };
 
       input."type:touchpad" = {
         tap = "enabled";
