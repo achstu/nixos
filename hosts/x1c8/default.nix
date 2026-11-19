@@ -90,6 +90,13 @@
 
   programs.dconf.enable = true;
 
+  programs.ssh = {
+    startAgent = true;
+    extraConfig = ''
+      AddKeysToAgent yes
+    '';
+  };
+
   security.polkit.enable = true;
 
   services.logind.settings.Login.HandleLidSwitch = "suspend";
