@@ -6,4 +6,5 @@ in
   "achstu-password.age".publicKeys = [ x1c8 achstu ];
   "root-password.age".publicKeys = [ x1c8 achstu ];
   "openrouter-api-key.age".publicKeys = [ x1c8 achstu ];
+  "wise-api-key.age".publicKeys = [ x1c8 achstu ];
 }
