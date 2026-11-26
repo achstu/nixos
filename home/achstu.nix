@@ -15,6 +15,7 @@
     ./modules/fonts.nix
     # ./modules/timers.nix # TODO better backup approach
     ./modules/sway.nix
+    ./modules/xdg.nix
     ./modules/apps.nix
     ./modules/devtools.nix
 

@@ -15,27 +15,4 @@ in
     };
     "org/gnome/shell/keybindings" = { };
   };
-
-  xdg.userDirs = {
-    enable = true;
-    createDirectories = true;
-
-    # Przekierowujemy potrzebne katalogi na małe litery
-    download = "$HOME/downloads";
-
-    # Wyłączamy/przekierowujemy pozostałe standardowe foldery do $HOME
-    desktop = "$HOME";
-    documents = "$HOME";
-    music = "$HOME";
-    pictures = "$HOME";
-    projects = "$HOME";
-    publicShare = "$HOME";
-    templates = "$HOME";
-    videos = "$HOME";
-
-    # Dodatkowe własne katalogi
-    extraConfig = {
-      XDG_SCREENSHOTS_DIR = "$HOME/screenshots";
-    };
-  };
 }
